@@ -1,0 +1,962 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<template>
+    <description></description>
+    <name>TwitterToKafka</name>
+    <snippet>
+        <connections>
+            <id>5cd35361-6455-44d9-a1f5-7b2746292330</id>
+            <parentGroupId>e16f4e72-a69b-4001-bb9a-c226df234402</parentGroupId>
+            <backPressureDataSizeThreshold>0 MB</backPressureDataSizeThreshold>
+            <backPressureObjectThreshold>1000</backPressureObjectThreshold>
+            <destination>
+                <groupId>e16f4e72-a69b-4001-bb9a-c226df234402</groupId>
+                <id>a62bd5bd-91e1-41b0-b958-fa55ebffa18f</id>
+                <type>PROCESSOR</type>
+            </destination>
+            <flowFileExpiration>0 sec</flowFileExpiration>
+            <labelIndex>1</labelIndex>
+            <name></name>
+            <selectedRelationships>success</selectedRelationships>
+            <source>
+                <groupId>e16f4e72-a69b-4001-bb9a-c226df234402</groupId>
+                <id>38c3b270-50a1-484f-81b4-0704e976d6e3</id>
+                <type>PROCESSOR</type>
+            </source>
+            <zIndex>0</zIndex>
+        </connections>
+        <connections>
+            <id>59be64ee-a7d1-47a6-b967-18fb442eeb1f</id>
+            <parentGroupId>e16f4e72-a69b-4001-bb9a-c226df234402</parentGroupId>
+            <backPressureDataSizeThreshold>0 MB</backPressureDataSizeThreshold>
+            <backPressureObjectThreshold>1000</backPressureObjectThreshold>
+            <destination>
+                <groupId>e16f4e72-a69b-4001-bb9a-c226df234402</groupId>
+                <id>385d907e-a9b7-46e9-8698-277f38af1c58</id>
+                <type>PROCESSOR</type>
+            </destination>
+            <flowFileExpiration>0 sec</flowFileExpiration>
+            <labelIndex>1</labelIndex>
+            <name></name>
+            <prioritizers>org.apache.nifi.prioritizer.PriorityAttributePrioritizer</prioritizers>
+            <prioritizers>org.apache.nifi.prioritizer.OldestFlowFileFirstPrioritizer</prioritizers>
+            <selectedRelationships>matched</selectedRelationships>
+            <source>
+                <groupId>e16f4e72-a69b-4001-bb9a-c226df234402</groupId>
+                <id>a62bd5bd-91e1-41b0-b958-fa55ebffa18f</id>
+                <type>PROCESSOR</type>
+            </source>
+            <zIndex>0</zIndex>
+        </connections>
+        <connections>
+            <id>8918c4c2-72ae-4ecc-a393-3118194b81e4</id>
+            <parentGroupId>e16f4e72-a69b-4001-bb9a-c226df234402</parentGroupId>
+            <backPressureDataSizeThreshold>0 MB</backPressureDataSizeThreshold>
+            <backPressureObjectThreshold>0</backPressureObjectThreshold>
+            <destination>
+                <groupId>e16f4e72-a69b-4001-bb9a-c226df234402</groupId>
+                <id>664d09bb-d09d-4f8d-8fc9-cc5eedf6ece1</id>
+                <type>PROCESSOR</type>
+            </destination>
+            <flowFileExpiration>0 sec</flowFileExpiration>
+            <labelIndex>1</labelIndex>
+            <name></name>
+            <selectedRelationships>tweet</selectedRelationships>
+            <source>
+                <groupId>e16f4e72-a69b-4001-bb9a-c226df234402</groupId>
+                <id>385d907e-a9b7-46e9-8698-277f38af1c58</id>
+                <type>PROCESSOR</type>
+            </source>
+            <zIndex>0</zIndex>
+        </connections>
+        <processors>
+            <id>38c3b270-50a1-484f-81b4-0704e976d6e3</id>
+            <parentGroupId>e16f4e72-a69b-4001-bb9a-c226df234402</parentGroupId>
+            <position>
+                <x>-1078.60009765625</x>
+                <y>-1470.9999694824219</y>
+            </position>
+            <config>
+                <bulletinLevel>WARN</bulletinLevel>
+                <comments></comments>
+                <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+                <defaultConcurrentTasks>
+                    <entry>
+                        <key>TIMER_DRIVEN</key>
+                        <value>1</value>
+                    </entry>
+                    <entry>
+                        <key>EVENT_DRIVEN</key>
+                        <value>0</value>
+                    </entry>
+                    <entry>
+                        <key>CRON_DRIVEN</key>
+                        <value>1</value>
+                    </entry>
+                </defaultConcurrentTasks>
+                <defaultSchedulingPeriod>
+                    <entry>
+                        <key>TIMER_DRIVEN</key>
+                        <value>0 sec</value>
+                    </entry>
+                    <entry>
+                        <key>CRON_DRIVEN</key>
+                        <value>* * * * * ?</value>
+                    </entry>
+                </defaultSchedulingPeriod>
+                <descriptors>
+                    <entry>
+                        <key>Twitter Endpoint</key>
+                        <value>
+                            <allowableValues>
+                                <description>The endpoint that provides public data, aka a 'garden hose'</description>
+                                <displayName>Sample Endpoint</displayName>
+                                <value>Sample Endpoint</value>
+                            </allowableValues>
+                            <allowableValues>
+                                <description>The endpoint that provides access to all tweets</description>
+                                <displayName>Firehose Endpoint</displayName>
+                                <value>Firehose Endpoint</value>
+                            </allowableValues>
+                            <allowableValues>
+                                <description>Endpoint that allows the stream to be filtered by specific terms or User IDs</description>
+                                <displayName>Filter Endpoint</displayName>
+                                <value>Filter Endpoint</value>
+                            </allowableValues>
+                            <defaultValue>Sample Endpoint</defaultValue>
+                            <description>Specifies which endpoint data should be pulled from</description>
+                            <displayName>Twitter Endpoint</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Twitter Endpoint</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Consumer Key</key>
+                        <value>
+                            <description>The Consumer Key provided by Twitter</description>
+                            <displayName>Consumer Key</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Consumer Key</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Consumer Secret</key>
+                        <value>
+                            <description>The Consumer Secret provided by Twitter</description>
+                            <displayName>Consumer Secret</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Consumer Secret</name>
+                            <required>true</required>
+                            <sensitive>true</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Access Token</key>
+                        <value>
+                            <description>The Access Token provided by Twitter</description>
+                            <displayName>Access Token</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Access Token</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Access Token Secret</key>
+                        <value>
+                            <description>The Access Token Secret provided by Twitter</description>
+                            <displayName>Access Token Secret</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Access Token Secret</name>
+                            <required>true</required>
+                            <sensitive>true</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Languages</key>
+                        <value>
+                            <description>A comma-separated list of languages for which tweets should be fetched</description>
+                            <displayName>Languages</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Languages</name>
+                            <required>false</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Terms to Filter On</key>
+                        <value>
+                            <description>A comma-separated list of terms to filter on. Ignored unless Endpoint is set to 'Filter Endpoint'. The filter works such that if any term matches, the status update will be retrieved; multiple terms separated by a space function as an 'AND'. I.e., 'it was, hello' will retrieve status updates that have either 'hello' or both 'it' AND 'was'</description>
+                            <displayName>Terms to Filter On</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Terms to Filter On</name>
+                            <required>false</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>IDs to Follow</key>
+                        <value>
+                            <description>A comma-separated list of Twitter User ID's to follow. Ignored unless Endpoint is set to 'Filter Endpoint'.</description>
+                            <displayName>IDs to Follow</displayName>
+                            <dynamic>false</dynamic>
+                            <name>IDs to Follow</name>
+                            <required>false</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Locations to Filter On</key>
+                        <value>
+                            <description>A comma-separated list of coordinates specifying one or more bounding boxes to filter on.Each bounding box is specified by a pair of coordinates in the format: swLon,swLat,neLon,neLat. Multiple bounding boxes can be specified as such: swLon1,swLat1,neLon1,neLat1,swLon2,swLat2,neLon2,neLat2.Ignored unless Endpoint is set to 'Filter Endpoint'.</description>
+                            <displayName>Locations to Filter On</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Locations to Filter On</name>
+                            <required>false</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                </descriptors>
+                <lossTolerant>false</lossTolerant>
+                <penaltyDuration>30 sec</penaltyDuration>
+                <properties>
+                    <entry>
+                        <key>Twitter Endpoint</key>
+                        <value>Sample Endpoint</value>
+                    </entry>
+                    <entry>
+                        <key>Consumer Key</key>
+                        <value>ycDIQtBgFWuTTxHwNZ5qN2U2a</value>
+                    </entry>
+                    <entry>
+                        <key>Consumer Secret</key>
+                    </entry>
+                    <entry>
+                        <key>Access Token</key>
+                        <value>457331739-uStZoMLlApDoYHHulUmlQeCK4k16lsyjUgeRPH2V</value>
+                    </entry>
+                    <entry>
+                        <key>Access Token Secret</key>
+                    </entry>
+                    <entry>
+                        <key>Languages</key>
+                    </entry>
+                    <entry>
+                        <key>Terms to Filter On</key>
+                    </entry>
+                    <entry>
+                        <key>IDs to Follow</key>
+                    </entry>
+                    <entry>
+                        <key>Locations to Filter On</key>
+                    </entry>
+                </properties>
+                <runDurationMillis>0</runDurationMillis>
+                <schedulingPeriod>0 sec</schedulingPeriod>
+                <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+                <yieldDuration>1 sec</yieldDuration>
+            </config>
+            <name>Pull Twitter Data</name>
+            <relationships>
+                <autoTerminate>false</autoTerminate>
+                <description>All status updates will be routed to this relationship</description>
+                <name>success</name>
+            </relationships>
+            <state>STOPPED</state>
+            <style/>
+            <supportsEventDriven>false</supportsEventDriven>
+            <supportsParallelProcessing>true</supportsParallelProcessing>
+            <type>org.apache.nifi.processors.twitter.GetTwitter</type>
+        </processors>
+        <processors>
+            <id>a62bd5bd-91e1-41b0-b958-fa55ebffa18f</id>
+            <parentGroupId>e16f4e72-a69b-4001-bb9a-c226df234402</parentGroupId>
+            <position>
+                <x>-1072.0261688232422</x>
+                <y>-1288.6540489196777</y>
+            </position>
+            <config>
+                <bulletinLevel>ERROR</bulletinLevel>
+                <comments></comments>
+                <concurrentlySchedulableTaskCount>4</concurrentlySchedulableTaskCount>
+                <defaultConcurrentTasks>
+                    <entry>
+                        <key>TIMER_DRIVEN</key>
+                        <value>1</value>
+                    </entry>
+                    <entry>
+                        <key>EVENT_DRIVEN</key>
+                        <value>0</value>
+                    </entry>
+                    <entry>
+                        <key>CRON_DRIVEN</key>
+                        <value>1</value>
+                    </entry>
+                </defaultConcurrentTasks>
+                <defaultSchedulingPeriod>
+                    <entry>
+                        <key>TIMER_DRIVEN</key>
+                        <value>0 sec</value>
+                    </entry>
+                    <entry>
+                        <key>CRON_DRIVEN</key>
+                        <value>* * * * * ?</value>
+                    </entry>
+                </defaultSchedulingPeriod>
+                <descriptors>
+                    <entry>
+                        <key>Destination</key>
+                        <value>
+                            <allowableValues>
+                                <displayName>flowfile-content</displayName>
+                                <value>flowfile-content</value>
+                            </allowableValues>
+                            <allowableValues>
+                                <displayName>flowfile-attribute</displayName>
+                                <value>flowfile-attribute</value>
+                            </allowableValues>
+                            <defaultValue>flowfile-content</defaultValue>
+                            <description>Indicates whether the results of the JsonPath evaluation are written to the FlowFile content or a FlowFile attribute; if using attribute, must specify the Attribute Name property. If set to flowfile-content, only one JsonPath may be specified, and the property name is ignored.</description>
+                            <displayName>Destination</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Destination</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Return Type</key>
+                        <value>
+                            <allowableValues>
+                                <displayName>auto-detect</displayName>
+                                <value>auto-detect</value>
+                            </allowableValues>
+                            <allowableValues>
+                                <displayName>json</displayName>
+                                <value>json</value>
+                            </allowableValues>
+                            <allowableValues>
+                                <displayName>scalar</displayName>
+                                <value>scalar</value>
+                            </allowableValues>
+                            <defaultValue>auto-detect</defaultValue>
+                            <description>Indicates the desired return type of the JSON Path expressions.  Selecting 'auto-detect' will set the return type to 'json' for a Destination of 'flowfile-content', and 'scalar' for a Destination of 'flowfile-attribute'.</description>
+                            <displayName>Return Type</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Return Type</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Path Not Found Behavior</key>
+                        <value>
+                            <allowableValues>
+                                <displayName>warn</displayName>
+                                <value>warn</value>
+                            </allowableValues>
+                            <allowableValues>
+                                <displayName>ignore</displayName>
+                                <value>ignore</value>
+                            </allowableValues>
+                            <defaultValue>ignore</defaultValue>
+                            <description>Indicates how to handle missing JSON path expressions when destination is set to 'flowfile-attribute'. Selecting 'warn' will generate a warning when a JSON path expression is not found.</description>
+                            <displayName>Path Not Found Behavior</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Path Not Found Behavior</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Null Value Representation</key>
+                        <value>
+                            <allowableValues>
+                                <displayName>empty string</displayName>
+                                <value>empty string</value>
+                            </allowableValues>
+                            <allowableValues>
+                                <displayName>the string 'null'</displayName>
+                                <value>the string 'null'</value>
+                            </allowableValues>
+                            <defaultValue>empty string</defaultValue>
+                            <description>Indicates the desired representation of JSON Path expressions resulting in a null value.</description>
+                            <displayName>Null Value Representation</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Null Value Representation</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>language</key>
+                        <value>
+                            <description></description>
+                            <displayName>language</displayName>
+                            <dynamic>true</dynamic>
+                            <name>language</name>
+                            <required>false</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>twitter.handle</key>
+                        <value>
+                            <description></description>
+                            <displayName>twitter.handle</displayName>
+                            <dynamic>true</dynamic>
+                            <name>twitter.handle</name>
+                            <required>false</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>twitter.msg</key>
+                        <value>
+                            <description></description>
+                            <displayName>twitter.msg</displayName>
+                            <dynamic>true</dynamic>
+                            <name>twitter.msg</name>
+                            <required>false</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>twitter.user</key>
+                        <value>
+                            <description></description>
+                            <displayName>twitter.user</displayName>
+                            <dynamic>true</dynamic>
+                            <name>twitter.user</name>
+                            <required>false</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                </descriptors>
+                <lossTolerant>false</lossTolerant>
+                <penaltyDuration>30 sec</penaltyDuration>
+                <properties>
+                    <entry>
+                        <key>Destination</key>
+                        <value>flowfile-attribute</value>
+                    </entry>
+                    <entry>
+                        <key>Return Type</key>
+                        <value>auto-detect</value>
+                    </entry>
+                    <entry>
+                        <key>Path Not Found Behavior</key>
+                        <value>ignore</value>
+                    </entry>
+                    <entry>
+                        <key>Null Value Representation</key>
+                        <value>empty string</value>
+                    </entry>
+                    <entry>
+                        <key>language</key>
+                        <value>$.lang</value>
+                    </entry>
+                    <entry>
+                        <key>twitter.handle</key>
+                        <value>$.user.screen_name</value>
+                    </entry>
+                    <entry>
+                        <key>twitter.msg</key>
+                        <value>$.text</value>
+                    </entry>
+                    <entry>
+                        <key>twitter.user</key>
+                        <value>$.user.name</value>
+                    </entry>
+                </properties>
+                <runDurationMillis>25</runDurationMillis>
+                <schedulingPeriod>0 sec</schedulingPeriod>
+                <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+                <yieldDuration>1 sec</yieldDuration>
+            </config>
+            <name>Pull Key Attributes</name>
+            <relationships>
+                <autoTerminate>true</autoTerminate>
+                <description>FlowFiles are routed to this relationship when the JsonPath cannot be evaluated against the content of the FlowFile; for instance, if the FlowFile is not valid JSON</description>
+                <name>failure</name>
+            </relationships>
+            <relationships>
+                <autoTerminate>false</autoTerminate>
+                <description>FlowFiles are routed to this relationship when the JsonPath is successfully evaluated and the FlowFile is modified as a result</description>
+                <name>matched</name>
+            </relationships>
+            <relationships>
+                <autoTerminate>true</autoTerminate>
+                <description>FlowFiles are routed to this relationship when the JsonPath does not match the content of the FlowFile and the Destination is set to flowfile-content</description>
+                <name>unmatched</name>
+            </relationships>
+            <state>STOPPED</state>
+            <style/>
+            <supportsEventDriven>true</supportsEventDriven>
+            <supportsParallelProcessing>true</supportsParallelProcessing>
+            <type>org.apache.nifi.processors.standard.EvaluateJsonPath</type>
+        </processors>
+        <processors>
+            <id>385d907e-a9b7-46e9-8698-277f38af1c58</id>
+            <parentGroupId>e16f4e72-a69b-4001-bb9a-c226df234402</parentGroupId>
+            <position>
+                <x>-1077.2439727783203</x>
+                <y>-1103.7731285095215</y>
+            </position>
+            <config>
+                <bulletinLevel>WARN</bulletinLevel>
+                <comments></comments>
+                <concurrentlySchedulableTaskCount>2</concurrentlySchedulableTaskCount>
+                <defaultConcurrentTasks>
+                    <entry>
+                        <key>TIMER_DRIVEN</key>
+                        <value>1</value>
+                    </entry>
+                    <entry>
+                        <key>EVENT_DRIVEN</key>
+                        <value>0</value>
+                    </entry>
+                    <entry>
+                        <key>CRON_DRIVEN</key>
+                        <value>1</value>
+                    </entry>
+                </defaultConcurrentTasks>
+                <defaultSchedulingPeriod>
+                    <entry>
+                        <key>TIMER_DRIVEN</key>
+                        <value>0 sec</value>
+                    </entry>
+                    <entry>
+                        <key>CRON_DRIVEN</key>
+                        <value>* * * * * ?</value>
+                    </entry>
+                </defaultSchedulingPeriod>
+                <descriptors>
+                    <entry>
+                        <key>Routing Strategy</key>
+                        <value>
+                            <allowableValues>
+                                <description>A copy of the FlowFile will be routed to each relationship whose corresponding expression evaluates to 'true'</description>
+                                <displayName>Route to Property name</displayName>
+                                <value>Route to Property name</value>
+                            </allowableValues>
+                            <allowableValues>
+                                <description>Requires that all user-defined expressions evaluate to 'true' for the FlowFile to be considered a match</description>
+                                <displayName>Route to 'matched' if all match</displayName>
+                                <value>Route to 'match' if all match</value>
+                            </allowableValues>
+                            <allowableValues>
+                                <description>Requires that at least one user-defined expression evaluate to 'true' for hte FlowFile to be considered a match</description>
+                                <displayName>Route to 'matched' if any matches</displayName>
+                                <value>Route to 'match' if any matches</value>
+                            </allowableValues>
+                            <defaultValue>Route to Property name</defaultValue>
+                            <description>Specifies how to determine which relationship to use when evaluating the Expression Language</description>
+                            <displayName>Routing Strategy</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Routing Strategy</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>tweet</key>
+                        <value>
+                            <description></description>
+                            <displayName>tweet</displayName>
+                            <dynamic>true</dynamic>
+                            <name>tweet</name>
+                            <required>false</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>true</supportsEl>
+                        </value>
+                    </entry>
+                </descriptors>
+                <lossTolerant>false</lossTolerant>
+                <penaltyDuration>30 sec</penaltyDuration>
+                <properties>
+                    <entry>
+                        <key>Routing Strategy</key>
+                        <value>Route to Property name</value>
+                    </entry>
+                    <entry>
+                        <key>tweet</key>
+                        <value>${twitter.msg:isEmpty():not()}</value>
+                    </entry>
+                </properties>
+                <runDurationMillis>25</runDurationMillis>
+                <schedulingPeriod>0 sec</schedulingPeriod>
+                <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+                <yieldDuration>1 sec</yieldDuration>
+            </config>
+            <name>Find only Tweets</name>
+            <relationships>
+                <autoTerminate>false</autoTerminate>
+                <description></description>
+                <name>tweet</name>
+            </relationships>
+            <relationships>
+                <autoTerminate>true</autoTerminate>
+                <description>FlowFiles that do not match any user-define expression will be routed here</description>
+                <name>unmatched</name>
+            </relationships>
+            <state>STOPPED</state>
+            <style/>
+            <supportsEventDriven>true</supportsEventDriven>
+            <supportsParallelProcessing>true</supportsParallelProcessing>
+            <type>org.apache.nifi.processors.standard.RouteOnAttribute</type>
+        </processors>
+        <processors>
+            <id>664d09bb-d09d-4f8d-8fc9-cc5eedf6ece1</id>
+            <parentGroupId>e16f4e72-a69b-4001-bb9a-c226df234402</parentGroupId>
+            <position>
+                <x>-1079.2677864618236</x>
+                <y>-923.0548232922047</y>
+            </position>
+            <config>
+                <bulletinLevel>WARN</bulletinLevel>
+                <comments></comments>
+                <concurrentlySchedulableTaskCount>1</concurrentlySchedulableTaskCount>
+                <defaultConcurrentTasks>
+                    <entry>
+                        <key>TIMER_DRIVEN</key>
+                        <value>1</value>
+                    </entry>
+                    <entry>
+                        <key>EVENT_DRIVEN</key>
+                        <value>0</value>
+                    </entry>
+                    <entry>
+                        <key>CRON_DRIVEN</key>
+                        <value>1</value>
+                    </entry>
+                </defaultConcurrentTasks>
+                <defaultSchedulingPeriod>
+                    <entry>
+                        <key>TIMER_DRIVEN</key>
+                        <value>0 sec</value>
+                    </entry>
+                    <entry>
+                        <key>CRON_DRIVEN</key>
+                        <value>* * * * * ?</value>
+                    </entry>
+                </defaultSchedulingPeriod>
+                <descriptors>
+                    <entry>
+                        <key>Known Brokers</key>
+                        <value>
+                            <description>A comma-separated list of known Kafka Brokers in the format &lt;host&gt;:&lt;port&gt;</description>
+                            <displayName>Known Brokers</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Known Brokers</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Topic Name</key>
+                        <value>
+                            <description>The Kafka Topic of interest</description>
+                            <displayName>Topic Name</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Topic Name</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>true</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Partition Strategy</key>
+                        <value>
+                            <allowableValues>
+                                <description>Messages will be assigned partitions in a round-robin fashion, sending the first message to Partition 1, the next Partition to Partition 2, and so on, wrapping as necessary.</description>
+                                <displayName>Round Robin</displayName>
+                                <value>Round Robin</value>
+                            </allowableValues>
+                            <allowableValues>
+                                <description>Messages will be assigned to random partitions.</description>
+                                <displayName>Random</displayName>
+                                <value>Random Robin</value>
+                            </allowableValues>
+                            <allowableValues>
+                                <description>The &lt;Partition&gt; property will be used to determine the partition. All messages within the same FlowFile will be assigned to the same partition.</description>
+                                <displayName>User-Defined</displayName>
+                                <value>User-Defined</value>
+                            </allowableValues>
+                            <defaultValue>Round Robin</defaultValue>
+                            <description>Specifies how messages should be partitioned when sent to Kafka</description>
+                            <displayName>Partition Strategy</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Partition Strategy</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Partition</key>
+                        <value>
+                            <description>Specifies which Kafka Partition to add the message to. If using a message delimiter, all messages in the same FlowFile will be sent to the same partition. If a partition is specified but is not valid, then all messages within the same FlowFile will use the same partition but it remains undefined which partition is used.</description>
+                            <displayName>Partition</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Partition</name>
+                            <required>false</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>true</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Kafka Key</key>
+                        <value>
+                            <description>The Key to use for the Message</description>
+                            <displayName>Kafka Key</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Kafka Key</name>
+                            <required>false</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>true</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Delivery Guarantee</key>
+                        <value>
+                            <allowableValues>
+                                <description>FlowFile will be routed to success after successfully writing the content to a Kafka node, without waiting for a response. This provides the best performance but may result in data loss.</description>
+                                <displayName>Best Effort</displayName>
+                                <value>0</value>
+                            </allowableValues>
+                            <allowableValues>
+                                <description>FlowFile will be routed to success if the message is received by a single Kafka node, whether or not it is replicated. This is faster than &lt;Guarantee Replicated Delivery&gt; but can result in data loss if a Kafka node crashes</description>
+                                <displayName>Guarantee Single Node Delivery</displayName>
+                                <value>1</value>
+                            </allowableValues>
+                            <allowableValues>
+                                <description>FlowFile will be routed to failure unless the message is replicated to the appropriate number of Kafka Nodes according to the Topic configuration</description>
+                                <displayName>Guarantee Replicated Delivery</displayName>
+                                <value>all</value>
+                            </allowableValues>
+                            <defaultValue>0</defaultValue>
+                            <description>Specifies the requirement for guaranteeing that a message is sent to Kafka</description>
+                            <displayName>Delivery Guarantee</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Delivery Guarantee</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Message Delimiter</key>
+                        <value>
+                            <description>Specifies the delimiter to use for splitting apart multiple messages within a single FlowFile. If not specified, the entire content of the FlowFile will be used as a single message. If specified, the contents of the FlowFile will be split on this delimiter and each section sent as a separate Kafka message. Note that if messages are delimited and some messages for a given FlowFile are transferred successfully while others are not, the messages will be split into individual FlowFiles, such that those messages that were successfully sent are routed to the 'success' relationship while other messages are sent to the 'failure' relationship.</description>
+                            <displayName>Message Delimiter</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Message Delimiter</name>
+                            <required>false</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>true</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Max Buffer Size</key>
+                        <value>
+                            <defaultValue>5 MB</defaultValue>
+                            <description>The maximum amount of data to buffer in memory before sending to Kafka</description>
+                            <displayName>Max Buffer Size</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Max Buffer Size</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Max Record Size</key>
+                        <value>
+                            <defaultValue>1 MB</defaultValue>
+                            <description>The maximum size that any individual record can be.</description>
+                            <displayName>Max Record Size</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Max Record Size</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Communications Timeout</key>
+                        <value>
+                            <defaultValue>30 secs</defaultValue>
+                            <description>The amount of time to wait for a response from Kafka before determining that there is a communications error</description>
+                            <displayName>Communications Timeout</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Communications Timeout</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Async Batch Size</key>
+                        <value>
+                            <defaultValue>200</defaultValue>
+                            <description>The number of messages to send in one batch. The producer will wait until either this number of messages are ready to send or &quot;Queue Buffering Max Time&quot; is reached. NOTE: This property will be ignored unless the 'Message Delimiter' property is specified.</description>
+                            <displayName>Batch Size</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Async Batch Size</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Queue Buffering Max Time</key>
+                        <value>
+                            <defaultValue>5 secs</defaultValue>
+                            <description>Maximum time to buffer data before sending to Kafka. For example a setting of 100 ms will try to batch together 100 milliseconds' worth of messages to send at once. This will improve throughput but adds message delivery latency due to the buffering.</description>
+                            <displayName>Queue Buffering Max Time</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Queue Buffering Max Time</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Compression Codec</key>
+                        <value>
+                            <allowableValues>
+                                <description>Compression will not be used for any topic.</description>
+                                <displayName>None</displayName>
+                                <value>none</value>
+                            </allowableValues>
+                            <allowableValues>
+                                <description>Compress messages using GZIP</description>
+                                <displayName>GZIP</displayName>
+                                <value>gzip</value>
+                            </allowableValues>
+                            <allowableValues>
+                                <description>Compress messages using Snappy</description>
+                                <displayName>Snappy</displayName>
+                                <value>snappy</value>
+                            </allowableValues>
+                            <defaultValue>none</defaultValue>
+                            <description>This parameter allows you to specify the compression codec for all data generated by this producer.</description>
+                            <displayName>Compression Codec</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Compression Codec</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                    <entry>
+                        <key>Client Name</key>
+                        <value>
+                            <description>Client Name to use when communicating with Kafka</description>
+                            <displayName>Client Name</displayName>
+                            <dynamic>false</dynamic>
+                            <name>Client Name</name>
+                            <required>true</required>
+                            <sensitive>false</sensitive>
+                            <supportsEl>false</supportsEl>
+                        </value>
+                    </entry>
+                </descriptors>
+                <lossTolerant>false</lossTolerant>
+                <penaltyDuration>30 sec</penaltyDuration>
+                <properties>
+                    <entry>
+                        <key>Known Brokers</key>
+                        <value>localhost:9092</value>
+                    </entry>
+                    <entry>
+                        <key>Topic Name</key>
+                        <value>twitter</value>
+                    </entry>
+                    <entry>
+                        <key>Partition Strategy</key>
+                    </entry>
+                    <entry>
+                        <key>Partition</key>
+                    </entry>
+                    <entry>
+                        <key>Kafka Key</key>
+                    </entry>
+                    <entry>
+                        <key>Delivery Guarantee</key>
+                        <value>1</value>
+                    </entry>
+                    <entry>
+                        <key>Message Delimiter</key>
+                    </entry>
+                    <entry>
+                        <key>Max Buffer Size</key>
+                    </entry>
+                    <entry>
+                        <key>Max Record Size</key>
+                    </entry>
+                    <entry>
+                        <key>Communications Timeout</key>
+                    </entry>
+                    <entry>
+                        <key>Async Batch Size</key>
+                    </entry>
+                    <entry>
+                        <key>Queue Buffering Max Time</key>
+                    </entry>
+                    <entry>
+                        <key>Compression Codec</key>
+                    </entry>
+                    <entry>
+                        <key>Client Name</key>
+                        <value>kafka</value>
+                    </entry>
+                </properties>
+                <runDurationMillis>0</runDurationMillis>
+                <schedulingPeriod>0 sec</schedulingPeriod>
+                <schedulingStrategy>TIMER_DRIVEN</schedulingStrategy>
+                <yieldDuration>1 sec</yieldDuration>
+            </config>
+            <name>Put to Kafka</name>
+            <relationships>
+                <autoTerminate>true</autoTerminate>
+                <description>Any FlowFile that cannot be sent to Kafka will be routed to this Relationship</description>
+                <name>failure</name>
+            </relationships>
+            <relationships>
+                <autoTerminate>true</autoTerminate>
+                <description>Any FlowFile that is successfully sent to Kafka will be routed to this Relationship</description>
+                <name>success</name>
+            </relationships>
+            <state>STOPPED</state>
+            <style/>
+            <supportsEventDriven>false</supportsEventDriven>
+            <supportsParallelProcessing>true</supportsParallelProcessing>
+            <type>org.apache.nifi.processors.kafka.PutKafka</type>
+        </processors>
+    </snippet>
+    <timestamp>09/27/2020 20:49:10 IST</timestamp>
+</template>
